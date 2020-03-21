@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="webix/webix.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
+    <link href='css/main.css' rel='stylesheet' type='text/css'>
+    <link href='lib/hopscotch/css/hopscotch.min.css' rel='stylesheet' type='text/css'>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="webix/webix.js" type="text/javascript"></script>
+
+    <!-- include the component -->
+    <script type="text/javascript" src="webix/ace/ace.js"></script>
+
+    <!-- configure autoloading -->
+    <script>
+        /*global webix*/
+        webix.codebase = "webix/ace/";
+        /* window.PROYECT_CODE = "< ? php echo $_GET['id']; ? >"; */
+    </script>
+
+    <title>Estructurator</title>
+</head>
+
+<body>
+
+    <!-- Mask Hopscoth JS -->
+    <div id="mask"></div>
+    <!-- Mask Hopscoth JS -->
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="logosprite">
+            <div class="fondo"></div>
+            <div class="flecha1"></div>
+            <div class="flecha2"></div>
+            <div class="flecha3"></div>
+            <div class="flecha4"></div>
+        </div>
+        <!-- <div id="status">&nbsp;</div> -->
+    </div>
+    <!-- Preloader -->
+
+
+
+    <script type="text/javascript">
+        /*global $*/
+        //<![CDATA[
+        $(window).load(function() { // makes sure the whole site is loaded
+            $('#status').fadeOut(); // will first fade out the loading animation
+            $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            $('body').delay(350).css({
+                'overflow': 'visible'
+            });
+        });
+        //]]>
+    </script>
+
+    <script src="lib/vis/vis.min.js"></script>
+    <script src="lib/JS-Interpreter/acorn_interpreter.js"></script>
+
+    <script src="lib/FileSaver.js/FileSaver.min.js"></script>
+    <script src="lib/filereader.js"></script>
+    <script src="lib/hopscotch/js/hopscotch.min.js"></script>
+    <script src="js/tour.js"></script>
+
+    <script src="js/parser.js"></script>
+    <script src="js/class/editor.js"></script>
+    <script src="js/class/board.js"></script>
+    <script src="js/class/interpreter.js"></script>
+    <script src="js/class/terminal.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/ui.js"></script>
+
+    <script>
+        window.msg = null;
+
+        /*global $*/
+
+        $(document.body).ready(function() {
+            $("[view_id='editor']").attr('id', 'editor');
+            $("[view_id='palette']").attr('id', 'palette');
+            $("[view_id='terminalytabla']").attr('id', 'terminalytabla');
+            $("[view_id='barraejecucion']").attr('id', 'barraejecucion');
+
+
+
+            // TOUR -- WIP
+            window.APP.tour();
+
+
+
+            $("[view_id='board']").attr('id', 'board');
+            $(".webix_icon").on('click', function() {
+                $(this).blur();
+            });
+
+            $("[view_id='tablasimbolos']")
+                .attr('id', 'tablasimbolos')
+                .addClass('scrollbox');
+
+            $("[view_id='terminal']")
+                .html("<div id='terminal'></div>")
+                .addClass('scrollbox');
+
+            window.APP.initTerminal("terminal");
+            window.APP.initBoard("board");
+
+            $("[view_id='resetInstanceBoard']").on('click', function() {
+                var v = 1; //$$("instanciaSegment").getValue();
+                // $$("instanciaSegment").callEvent("onBeforeTabClick", [v]);
+
+                if (window.APP.board.instanceChanged) {
+                    if (confirm("Desea cargar la Instancia #" + v + "? se perderan los cambios en la actual instancia"))
+                        window.APP.board.setNetworkInstance(v);
+                    else return false;
+                }
+                else window.APP.board.setNetworkInstance(v);
+
+            });
+
+            $("[view_id='clearInstanceBoard']").on('click', function() {
+                var v = 1; //$$("instanciaSegment").getValue();
+                window.APP.board.clearNetworkInstance(v);
+            });
+
+            $("[view_id='fitInstanceBoard']").on('click', function() {
+                window.APP.board.fit(true);
+            });
+
+            $("[view_id='saveInstanceBoard']").on('click', function() {
+                var v = 1; //$$("instanciaSegment").getValue();
+                window.APP.board.saveNetworkInstance(v);
+            });
+
+            $("[view_id='ejecutar']").on('click', function(){ $$("speed_slider").callEvent('onChange'); window.APP.run(); });
+            $("[view_id='pausar']").on('click',  function(){ window.APP.pause(); });
+            $("[view_id='detener']").on('click',  function(){ window.APP.abort(); });
+            $("[view_id='avanzar']").on('click',  function(){ window.APP.nextStep(); });
+            $("[view_id='terminar']").on('click',  function(){ window.APP.finish(); });
+
+            // Boton ELIMINAR
+            $('[webix_l_id="eliminarItem"]').addClass("hide");
+
+            window.APP.board.network.on('select', function(e) {
+                if (e.nodes.length && e.nodes[0] != 'NULO')
+                    $('[webix_l_id="eliminarItem"]').removeClass("hide");
+                else
+                    $('[webix_l_id="eliminarItem"]').addClass("hide");
+            });
+
+
+            $(window.APP.board.container).on('keydown', function(e) {
+                if (!e.ctrlKey && !e.altKey && !e.shiftKey && e.key == "Delete") {
+                    window.APP.board.borrarSeleccion();
+                }
+                
+                
+                if (!e.ctrlKey && !e.altKey && !e.shiftKey && e.key == "Escape") {
+                    window.APP.toast();
+                    window.APP.board.network.disableEditMode();
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

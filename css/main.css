@@ -1,0 +1,350 @@
+.paddingcero .webix_template {
+    padding: 0;
+}
+
+.instanciab {
+    background-color: inherit;
+    overflow: hidden !important;
+}
+
+.instanciab img {
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.fondoblanco {
+    background-color: white;
+}
+
+.stylethemecolor {
+    background: #003E6F;
+    border: none;
+    color: white !important;
+    font-weight: bold;
+}
+
+.stylethemecolor * {
+    color: white !important;
+}
+
+.centeralign button{
+    text-align: center;
+}
+
+.selcodigo {
+    position: absolute;
+    background: rgba(100, 100, 200, 0.5);
+    z-index: 40;
+}
+
+#terminal {
+    margin: 0;
+    font-family: 'Share Tech Mono', Helvetica, Arial, serif;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+#terminal span {
+    word-wrap: break-word;
+}
+
+#terminal .var {
+    color: red;
+    font-weight: bolder;
+}
+
+#terminal .cursor {
+    border-right: red 1px solid;
+}
+
+.scrollbox {
+    overflow-y: auto;
+    background-color: #1b1c1d;
+}
+
+#tablasimbolos{
+    background-color: white;
+}
+
+.hide{
+    display:none !important;
+}
+
+/* POPOUP MENU */
+
+.popupMenu {
+  position:absolute;
+  top:0px;
+  left:0px;
+  background-color:red;
+}
+
+.popupMenu ul {
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+}
+
+.popupMenu ul li {
+    padding: 0;
+    margin: 0;
+}
+
+.popupMenu ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/*TOAST*/
+
+.toast {
+    position: absolute;
+    top: 80px;
+    right: 5px;
+    padding: 5px;
+    background-color: #ff4444;
+    border: 5px solid black;
+    text-transform: uppercase;
+    font-family: Helvetica, sans-serif;
+    color: white;
+    font-weight: bold;
+    max-width: 300px;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* Mask Hopscoth JS */
+
+.mask {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    transition: background-color 350ms ease;
+    background-color:rgba(0,0,0,0);
+}
+
+.masked {
+    background-color:rgba(0,0,0,0.65);
+}
+
+
+/* Preloader */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+    background-image: url('../img/bg.png');
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    /* change if the mask should have another color then white */
+    z-index: 99;
+    /* makes sure it stays on top */
+}
+
+
+/*
+        #status {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            background-image: url('http://files.mimoymima.com/images/loading.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: -100px 0 0 -100px;
+        }
+        */
+
+#logosprite {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    padding: 0;
+    margin: -250px 0 0 -250px;
+}
+
+#logosprite div {
+    background-image: url('../img/sprite-logo.png');
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#logosprite .flecha1 {
+    width: 53px;
+    height: 164px;
+    background-position: -185px -58px;
+    left: 170px;
+    top: 80px;
+    -webkit-animation: flecha1 2s;
+    animation: flecha1 2s;
+}
+
+@-webkit-keyframes flecha1 {
+    0% {
+        left: 160px;
+        top: 40px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flecha1 {
+    0% {
+        left: 160px;
+        top: 40px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#logosprite .flecha2 {
+    width: 48px;
+    height: 221px;
+    background-position: -250px 0px;
+    left: 220px;
+    top: 70px;
+    -webkit-animation: flecha2 2.5s;
+    animation: flecha2 2.5s;
+}
+
+@-webkit-keyframes flecha2 {
+    0% {
+        top: 40px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flecha2 {
+    0% {
+        top: 40px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#logosprite .flecha3 {
+    width: 39px;
+    height: 126px;
+    background-position: -311px -97px;
+    left: 255px;
+    top: 100px;
+    -webkit-animation: flecha3 1s;
+    animation: flecha3 1s;
+}
+
+@-webkit-keyframes flecha3 {
+    0% {
+        top: 50px;
+        left: 270px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flecha3 {
+    0% {
+        top: 50px;
+        left: 270px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#logosprite .flecha4 {
+    width: 62px;
+    height: 107px;
+    background-position: -363px -116px;
+    left: 280px;
+    top: 150px;
+    -webkit-animation: flecha4 1.5s;
+    animation: flecha4 1.5s;
+}
+
+@-webkit-keyframes flecha4 {
+    0% {
+        top: 50px;
+        left: 300px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes flecha4 {
+    0% {
+        top: 50px;
+        left: 300px;
+        opacity: .1
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#logosprite .fondo {
+    width: 181px;
+    height: 182px;
+    left: 160px;
+    top: 160px;
+    -webkit-animation: fondo 2s infinite;
+    animation: fondo 2s infinite;
+}
+
+@-webkit-keyframes fondo {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.95);
+    }
+}
+
+@keyframes fondo {
+    0% {
+        transform: scale(0.95);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.95);
+    }
+}
